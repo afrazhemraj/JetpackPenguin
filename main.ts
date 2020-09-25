@@ -1,3 +1,8 @@
+enum ActionKind {
+    Walking,
+    Idle,
+    Jumping
+}
 namespace SpriteKind {
     export const Platform = SpriteKind.create()
     export const Platform2 = SpriteKind.create()
@@ -5,6 +10,47 @@ namespace SpriteKind {
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (mySprite.isHittingTile(CollisionDirection.Bottom)) {
         mySprite.vy = -200
+        animation.setAction(mySprite, ActionKind.Jumping)
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . b . . . . c c c c c c . . . 
+            . b 2 b . . c c c c c c c c . . 
+            b 2 9 2 b c c c c c 1 1 c c c . 
+            2 3 9 2 2 c c c c c 1 f c c c . 
+            2 3 9 2 2 a c c c c 9 f c c c . 
+            2 3 3 3 2 a c c c c a a c c c . 
+            2 2 9 2 2 a 1 d d c c c c 4 4 4 
+            . 2 3 2 2 a 1 d d d d d 1 2 4 4 
+            . 2 3 2 2 a 1 1 d d d d 1 1 c . 
+            . 2 3 2 2 a 1 1 d d d d 1 1 a . 
+            . 2 9 2 2 a c 1 1 d d d 1 1 a . 
+            2 3 9 3 2 a c 1 1 1 d 1 1 1 a . 
+            2 3 9 3 2 a c 1 1 1 1 1 1 1 a . 
+            2 . 2 3 2 c c c 1 1 1 1 c c a . 
+            . . . . . 1 4 4 c c 1 c 4 a a . 
+            . . . . . . 4 4 4 4 c c 4 4 4 4 
+            `,img`
+            . . b . . . . c c c c c c . . . 
+            . b 2 b . . c c c c c c c c . . 
+            b 2 5 2 b c c c c c 1 1 c c c . 
+            2 3 5 2 2 c c c c c 1 f c c c . 
+            2 3 5 2 2 a c c c c 9 f c c c . 
+            2 3 3 3 2 a c c c c a a c c c . 
+            2 2 5 2 2 a 1 d d c c c c 4 4 4 
+            . 2 3 2 2 a 1 d d d d d 1 2 4 4 
+            . 2 3 2 2 a 1 1 d d d d 1 1 c . 
+            . 2 3 2 2 a 1 1 d d d d 1 1 a . 
+            . 2 5 2 2 a c 1 1 d d d 1 1 a . 
+            2 3 5 3 2 a c 1 1 1 d 1 1 1 a . 
+            2 3 5 3 2 a c 4 1 1 1 1 1 1 a . 
+            2 5 2 3 2 c c 4 1 1 1 1 4 c a . 
+            5 1 5 1 5 1 . 4 4 c 1 c 4 4 a . 
+            . 5 . 5 . . . . . . c c . . . . 
+            `],
+        700,
+        false
+        )
     }
     if (mySprite.y <= 30 && mySprite.y > 20) {
         info.changeScoreBy(1)
