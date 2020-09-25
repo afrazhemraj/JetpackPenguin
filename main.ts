@@ -184,6 +184,11 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
                 ................
                 `, [myTiles.transparency16,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.collectibleInsignia,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundNorth], TileScale.Sixteen))
             tiles.placeOnTile(mySprite, tiles.getTileLocation(8, 48))
+            tiles.placeOnTile(mySprite2, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
+            tiles.placeOnTile(mySprite3, tiles.getTileLocation(randint(1, 16), randint(26, 48)))
+            tiles.placeOnTile(mySprite4, tiles.getTileLocation(randint(1, 16), randint(26, 48)))
+            tiles.placeOnTile(mySprite5, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
+            tiles.placeOnTile(mySprite6, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
         } else {
             if (info.score() % 3 == 2) {
                 tiles.setTilemap(tiles.createTilemap(hex`1000100000000000000000000000000000000000000000000000000000000000000000000000020202020200000000000000000000000000000000000000000000000000000000000000000000020202020000000000000000000000000000000000000000000000000000000000000000000000000002020202000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020202020200000000000000000000000000000000000000000202020200000000000000000000000000000000000000000000000000000101010101010101010101010101010101010101010101010101010101010101`, img`
@@ -234,10 +239,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     otherSprite.destroy()
     tiles.placeOnTile(mySprite2, tiles.getTileLocation(randint(1, 16), randint(1, 25)))
     tiles.placeOnTile(mySprite3, tiles.getTileLocation(randint(1, 16), randint(1, 25)))
+    tiles.placeOnTile(mySprite4, tiles.getTileLocation(randint(1, 16), randint(1, 25)))
+    tiles.placeOnTile(mySprite5, tiles.getTileLocation(randint(1, 16), randint(1, 25)))
+    tiles.placeOnTile(mySprite6, tiles.getTileLocation(randint(1, 16), randint(1, 25)))
 })
+let mySprite6: Sprite = null
+let mySprite5: Sprite = null
+let mySprite4: Sprite = null
 let mySprite3: Sprite = null
-let mySprite: Sprite = null
 let mySprite2: Sprite = null
+let mySprite: Sprite = null
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -412,24 +423,6 @@ tiles.setTilemap(tiles.createTilemap(hex`100032000000000000000000000000000000000
     ................
     ................
     `, [myTiles.transparency16,sprites.castle.tileDarkGrass1,sprites.builtin.forestTiles0,sprites.castle.tileDarkGrass2], TileScale.Sixteen))
-mySprite2 = sprites.create(img`
-    . . . . . . . 6 . . . . . . . . 
-    . . . . . . 8 6 6 . . . 6 8 . . 
-    . . . e e e 8 8 6 6 . 6 7 8 . . 
-    . . e 2 2 2 2 e 8 6 6 7 6 . . . 
-    . e 2 2 4 4 2 7 7 7 7 7 8 6 . . 
-    . e 2 4 4 2 6 7 7 7 6 7 6 8 8 . 
-    e 2 4 5 2 2 6 7 7 6 2 7 7 6 . . 
-    e 2 4 4 2 2 6 7 6 2 2 6 7 7 6 . 
-    e 2 4 2 2 2 6 6 2 2 2 e 7 7 6 . 
-    e 2 4 2 2 4 2 2 2 4 2 2 e 7 6 . 
-    e 2 4 2 2 2 2 2 2 2 2 2 e c 6 . 
-    e 2 2 2 2 2 2 2 4 e 2 e e c . . 
-    e e 2 e 2 2 4 2 2 e e e c . . . 
-    e e e e 2 e 2 2 e e e c . . . . 
-    e e e 2 e e c e c c c . . . . . 
-    . c c c c c c c . . . . . . . . 
-    `, SpriteKind.Food)
 mySprite = sprites.create(img`
     ........................
     ........................
@@ -456,27 +449,102 @@ mySprite = sprites.create(img`
     ........................
     ........................
     `, SpriteKind.Player)
+mySprite2 = sprites.create(img`
+    . . . . . . . . c c c c c . . . 
+    . . . . . . c c 2 2 2 2 2 c . . 
+    . . . . . c 2 2 2 2 2 2 2 2 c . 
+    . . . . c b b b b b b 2 2 2 c . 
+    . . . . c 9 9 b b 9 b b c c . . 
+    . . . c 9 9 9 b b 9 9 9 c . . . 
+    . . . c 9 9 9 9 b 9 9 9 c . c c 
+    . . . c 2 9 9 9 b 9 9 9 b b 2 c 
+    . . c c 2 9 c 9 b 9 b 9 2 2 2 c 
+    . c c 2 2 9 9 9 9 9 b 9 b b 2 c 
+    f 2 2 2 9 9 9 9 9 b b 9 f . c c 
+    f f f 9 9 9 9 9 9 b b b f . . . 
+    . . . f f 9 9 9 b b b 2 2 f . . 
+    . . . . . f f f 2 2 2 2 2 f . . 
+    . . . . . . . . f f f f f f . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
 mySprite3 = sprites.create(img`
-    . . . . . . . . . . . 6 6 6 6 6 
-    . . . . . . . . . 6 6 7 7 7 7 8 
-    . . . . . . 8 8 8 7 7 8 8 6 8 8 
-    . . e e e e c 6 6 8 8 . 8 7 8 . 
-    . e 2 5 4 2 e c 8 . . . 6 7 8 . 
-    e 2 4 2 2 2 2 2 c . . . 6 7 8 . 
-    e 2 2 2 2 2 2 2 c . . . 8 6 8 . 
-    e 2 e e 2 2 2 2 e e e e c 6 8 . 
-    c 2 e e 2 2 2 2 e 2 5 4 2 c 8 . 
-    . c 2 e e e 2 e 2 4 2 2 2 2 c . 
-    . . c 2 2 2 e e 2 2 2 2 2 2 2 e 
-    . . . e c c e c 2 2 2 2 2 2 2 e 
-    . . . . . . . c 2 e e 2 2 e 2 c 
-    . . . . . . . c e e e e e e 2 c 
-    . . . . . . . . c e 2 2 2 2 c . 
-    . . . . . . . . . c c c c c . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . c c c c . . . 
+    . . . . . . . c c d d d d c . . 
+    . . . . . c c c c c c d d c . . 
+    . . . c c c 7 7 7 7 d c c c c c 
+    . . c 7 7 1 7 7 7 7 7 1 c c 7 f 
+    . c 7 7 7 7 1 7 7 7 7 d 1 f 7 f 
+    f 7 7 7 7 7 1 7 7 7 7 7 1 f 7 f 
+    f 7 7 f 7 7 1 7 c f 7 7 1 7 7 f 
+    f 7 7 7 7 7 1 c 7 f 7 7 1 f f f 
+    . f 7 7 7 7 1 7 7 f 7 7 d f . . 
+    . . f 7 7 1 7 c c 7 7 d f . . . 
+    . . . f d 7 7 7 7 7 7 c f . . . 
+    . . . . f f 7 7 7 7 c d b c . . 
+    . . . . . . f f f f d d d c . . 
+    . . . . . . . . . . c c c . . . 
+    `, SpriteKind.Food)
+mySprite4 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . c c c c c c . . . 
+    . . . . . . c 5 5 5 5 5 c c . . 
+    . . . . . c 5 5 5 5 5 5 5 5 c . 
+    . . . . c b b b b b b 5 5 5 c . 
+    . . . . c b b b b 1 b b c c . . 
+    . . . . c 1 1 b b 1 1 1 c . . . 
+    . . . c 1 1 1 1 b 1 1 1 c . . . 
+    . . . c 1 1 1 1 b 1 1 1 b b c c 
+    . . c c d 1 1 1 b 1 b 1 5 5 5 c 
+    . . c c d 1 c 1 1 1 b 1 b b 5 c 
+    . c c d d 1 1 1 1 1 b 1 f b 5 c 
+    f d d d 1 1 1 1 1 b b b f . c c 
+    f f f f f 1 1 1 b b 5 5 5 f . . 
+    . . . . . f f f 5 5 5 5 5 f . . 
+    . . . . . . . . f f f f f f . . 
+    `, SpriteKind.Food)
+mySprite5 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . c c c c . . . . 
+    . . . . . . c c d d d d c . . . 
+    . . . . . c c c c c c d c . . . 
+    . . . . c c 4 4 4 4 d c c . . . 
+    . . . c 4 d 4 4 4 4 4 1 c . c c 
+    . . c 4 4 4 1 4 4 4 4 d 1 c 4 c 
+    . c 4 4 4 4 1 4 4 4 4 4 1 c 4 c 
+    f 4 4 4 4 4 1 4 4 4 4 4 1 4 4 f 
+    f 4 4 4 f 4 1 c c 4 4 4 1 f 4 f 
+    f 4 4 4 4 4 1 4 4 f 4 4 d f 4 f 
+    . f 4 4 4 4 1 c 4 f 4 d f f f f 
+    . . f f 4 d 4 4 f f 4 c f c . . 
+    . . . . f f 4 4 4 4 c d b c . . 
+    . . . . . . f f f f d d d c . . 
+    . . . . . . . . . . c c c . . . 
+    `, SpriteKind.Food)
+mySprite6 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . c c c c c . . . . 
+    . . . . . . c d d d d d c . . . 
+    . . . . . . c c c c c d c . . . 
+    . . . . . c 5 5 5 5 d c c . . . 
+    . . . . c d 5 5 5 5 5 1 c . . . 
+    . . . c 5 5 1 5 5 5 5 5 1 c . . 
+    . . c 5 5 5 5 1 5 5 5 5 1 c c c 
+    . c 5 5 5 5 5 1 c c 5 5 1 5 5 c 
+    . c 5 5 5 5 5 1 5 5 f 5 1 f 5 f 
+    f 5 5 5 5 f 5 1 c 5 f 5 d f 5 f 
+    f 5 5 5 5 5 5 1 5 f f 5 f f 5 f 
+    . f 5 5 5 5 1 5 5 5 5 c b c f f 
+    . . f f f d 5 5 5 5 c d d c . . 
+    . . . . . f f f f f c c c . . . 
+    . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
 tiles.placeOnTile(mySprite, tiles.getTileLocation(8, 48))
 tiles.placeOnTile(mySprite2, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
 tiles.placeOnTile(mySprite3, tiles.getTileLocation(randint(1, 16), randint(26, 48)))
+tiles.placeOnTile(mySprite4, tiles.getTileLocation(randint(1, 16), randint(26, 48)))
+tiles.placeOnTile(mySprite5, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
+tiles.placeOnTile(mySprite6, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
 mySprite.ay = 300
 scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite, 100, 0)
