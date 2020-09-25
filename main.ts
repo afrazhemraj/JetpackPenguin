@@ -183,6 +183,96 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
                 ................
                 ................
                 `, [myTiles.transparency16,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.collectibleInsignia,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundNorth], TileScale.Sixteen))
+            mySprite2 = sprites.create(img`
+                . . . . . . . . c c c c c . . . 
+                . . . . . . c c 2 2 2 2 2 c . . 
+                . . . . . c 2 2 2 2 2 2 2 2 c . 
+                . . . . c b b b b b b 2 2 2 c . 
+                . . . . c 9 9 b b 9 b b c c . . 
+                . . . c 9 9 9 b b 9 9 9 c . . . 
+                . . . c 9 9 9 9 b 9 9 9 c . c c 
+                . . . c 2 9 9 9 b 9 9 9 b b 2 c 
+                . . c c 2 9 c 9 b 9 b 9 2 2 2 c 
+                . c c 2 2 9 9 9 9 9 b 9 b b 2 c 
+                f 2 2 2 9 9 9 9 9 b b 9 f . c c 
+                f f f 9 9 9 9 9 9 b b b f . . . 
+                . . . f f 9 9 9 b b b 2 2 f . . 
+                . . . . . f f f 2 2 2 2 2 f . . 
+                . . . . . . . . f f f f f f . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Food)
+            mySprite3 = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . c c c c . . . 
+                . . . . . . . c c d d d d c . . 
+                . . . . . c c c c c c d d c . . 
+                . . . c c c 7 7 7 7 d c c c c c 
+                . . c 7 7 1 7 7 7 7 7 1 c c 7 f 
+                . c 7 7 7 7 1 7 7 7 7 d 1 f 7 f 
+                f 7 7 7 7 7 1 7 7 7 7 7 1 f 7 f 
+                f 7 7 f 7 7 1 7 c f 7 7 1 7 7 f 
+                f 7 7 7 7 7 1 c 7 f 7 7 1 f f f 
+                . f 7 7 7 7 1 7 7 f 7 7 d f . . 
+                . . f 7 7 1 7 c c 7 7 d f . . . 
+                . . . f d 7 7 7 7 7 7 c f . . . 
+                . . . . f f 7 7 7 7 c d b c . . 
+                . . . . . . f f f f d d d c . . 
+                . . . . . . . . . . c c c . . . 
+                `, SpriteKind.Food)
+            mySprite4 = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . c c c c c c . . . 
+                . . . . . . c 5 5 5 5 5 c c . . 
+                . . . . . c 5 5 5 5 5 5 5 5 c . 
+                . . . . c b b b b b b 5 5 5 c . 
+                . . . . c b b b b 1 b b c c . . 
+                . . . . c 1 1 b b 1 1 1 c . . . 
+                . . . c 1 1 1 1 b 1 1 1 c . . . 
+                . . . c 1 1 1 1 b 1 1 1 b b c c 
+                . . c c d 1 1 1 b 1 b 1 5 5 5 c 
+                . . c c d 1 c 1 1 1 b 1 b b 5 c 
+                . c c d d 1 1 1 1 1 b 1 f b 5 c 
+                f d d d 1 1 1 1 1 b b b f . c c 
+                f f f f f 1 1 1 b b 5 5 5 f . . 
+                . . . . . f f f 5 5 5 5 5 f . . 
+                . . . . . . . . f f f f f f . . 
+                `, SpriteKind.Food)
+            mySprite5 = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . c c c c . . . . 
+                . . . . . . c c d d d d c . . . 
+                . . . . . c c c c c c d c . . . 
+                . . . . c c 4 4 4 4 d c c . . . 
+                . . . c 4 d 4 4 4 4 4 1 c . c c 
+                . . c 4 4 4 1 4 4 4 4 d 1 c 4 c 
+                . c 4 4 4 4 1 4 4 4 4 4 1 c 4 c 
+                f 4 4 4 4 4 1 4 4 4 4 4 1 4 4 f 
+                f 4 4 4 f 4 1 c c 4 4 4 1 f 4 f 
+                f 4 4 4 4 4 1 4 4 f 4 4 d f 4 f 
+                . f 4 4 4 4 1 c 4 f 4 d f f f f 
+                . . f f 4 d 4 4 f f 4 c f c . . 
+                . . . . f f 4 4 4 4 c d b c . . 
+                . . . . . . f f f f d d d c . . 
+                . . . . . . . . . . c c c . . . 
+                `, SpriteKind.Food)
+            mySprite6 = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . c c c c c . . . . 
+                . . . . . . c d d d d d c . . . 
+                . . . . . . c c c c c d c . . . 
+                . . . . . c 5 5 5 5 d c c . . . 
+                . . . . c d 5 5 5 5 5 1 c . . . 
+                . . . c 5 5 1 5 5 5 5 5 1 c . . 
+                . . c 5 5 5 5 1 5 5 5 5 1 c c c 
+                . c 5 5 5 5 5 1 c c 5 5 1 5 5 c 
+                . c 5 5 5 5 5 1 5 5 f 5 1 f 5 f 
+                f 5 5 5 5 f 5 1 c 5 f 5 d f 5 f 
+                f 5 5 5 5 5 5 1 5 f f 5 f f 5 f 
+                . f 5 5 5 5 1 5 5 5 5 c b c f f 
+                . . f f f d 5 5 5 5 c d d c . . 
+                . . . . . f f f f f c c c . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Food)
             tiles.placeOnTile(mySprite, tiles.getTileLocation(8, 48))
             tiles.placeOnTile(mySprite2, tiles.getTileLocation(randint(1, 16), randint(3, 25)))
             tiles.placeOnTile(mySprite3, tiles.getTileLocation(randint(1, 16), randint(26, 48)))
