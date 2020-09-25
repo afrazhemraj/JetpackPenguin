@@ -2,7 +2,8 @@
     "name": "TRON DAYZ",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "animation": "*"
     },
     "files": [
         "main.blocks",
